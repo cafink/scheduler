@@ -4,6 +4,7 @@ include_once 'models/Shift.php';
 
 class UserException extends Exception { }
 class EmployeeException extends UserException { }
+class ManagerException extends UserException { }
 
 class User extends BaseRow {
 
@@ -31,6 +32,13 @@ class User extends BaseRow {
 		$user = $this->get($id);
 		if ($user->role != 'employee')
 			throw new EmployeeException(get_class($this) . ' record #' . $id . ' is not an employee');
+		return $user;
+	}
+
+	function getManager ($id) {
+		$user = $this->get($id);
+		if ($user->role != 'manager')
+			throw new ManagerException(get_class($this) . ' record #' . $id . ' is not a manager');
 		return $user;
 	}
 
