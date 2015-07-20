@@ -55,6 +55,55 @@ class User extends BaseRow {
 
 		return $coworkers;
 	}
+
+	function summary () {
+
+		$summary = array();
+
+		foreach ($this->shifts as $shift) {
+
+			$timestamp = strtotime($shift->start_time);
+
+			// Find the first day of this shift's week,
+			// based on the starting time (overnight
+			// shifts spanning two different weeks count
+			// towards the first week's total).  If this
+			// shift is on the first day of the week, it's
+			// that day; otherwise, it's "last Sunday" (or
+			// whichever day was specified as the first of
+			// the week in config.php).
+			if (date('l', $timestamp) == $GLOBALS['config']['first_day_of_week'])
+				$week_of = $timestamp;
+			else
+				$week_of = strtotime("last {$GLOBALS['config']['first_day_of_week']}", $timestamp);
+
+			$week_of = date('Y-m-d', $week_of);
+
+			if (isset($summary[$week_of]))
+				$summary[$week_of] += $shift->length();
+			else
+				$summary[$week_of] = $shift->length();
+		}
+
+		// Because the Shift model orders shifts by
+		// start_time, we know that this summary array
+		// will automatically be ordered too, so we
+		// don't need to explicitly sort it.
+		return array_map(array($this, 'secondsToTime'), $summary);
+	}
+
+	private function secondsToTime ($seconds) {
+
+		$hours = floor($seconds / (60 * 60));
+
+		$minutes_divisor = $seconds % (60 * 60);
+		$minutes = floor($minutes_divisor / 60);
+
+		$seconds_divisor = $minutes_divisor % 60;
+		$seconds = ceil($seconds_divisor);
+
+		return "{$hours}h {$minutes}m {$seconds}s";
+	}
 }
 
 function UserTable () {

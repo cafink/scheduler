@@ -3,6 +3,7 @@
 class Shift extends BaseRow {
 
 	public $table_name = 'shifts';
+	protected $default_order_by = 'start_time ASC';
 
 	function validate () {
 		$errors = array();
@@ -22,6 +23,12 @@ class Shift extends BaseRow {
 			'where' => 'ID <> ? AND start_time < ? AND end_time > ?',
 			'params' => array($this->id, $this->end_time, $this->start_time)
 		));
+	}
+
+	// Return shift length as a Unix timestamp,
+	// to more easily perform arithmetic on it.
+	function length () {
+		return strtotime($this->end_time) - strtotime($this->start_time);
 	}
 }
 

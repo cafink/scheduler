@@ -44,3 +44,9 @@ $config['layouts']['normal'] = 'layouts/normal.php';
  * @link https://wiki.mudbugmedia.com/index.php/Chitin_Pager
  */
 $config['pager'] = array();
+
+/**
+ * On what day should the week start?
+ * Used by employee/summary
+ */
+$config['first_day_of_week'] = 'Sunday';

@@ -15,6 +15,12 @@ class EmployeeController extends ApplicationController {
 		$this->page['layout'] = false;
 		$this->render();
 	}
+
+	function summary ($coords) {
+		$this->summary = UserTable()->getEmployee($coords['id'])->summary();
+		$this->page['layout'] = false;
+		$this->render();
+	}
 }
 
 ?>
