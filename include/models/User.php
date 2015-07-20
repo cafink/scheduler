@@ -27,6 +27,10 @@ class User extends BaseRow {
 		return $errors;
 	}
 
+	function isUserInRole ($id, $role) {
+		return $this->get($id)->role == $role;
+	}
+
 	function getUserInRole ($id, $role) {
 		$user = $this->get($id);
 		if ($user->role != $role)

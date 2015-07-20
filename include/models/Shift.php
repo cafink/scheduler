@@ -1,5 +1,7 @@
 <?php
 
+include_once 'models/User.php';
+
 class Shift extends BaseRow {
 
 	public $table_name = 'shifts';
@@ -16,6 +18,10 @@ class Shift extends BaseRow {
 
 	function validate () {
 		$errors = array();
+		if (isset($this->manager_id) && !UserTable()->isUserInRole($this->manager_id, 'manager'))
+			$errors['manager_id'] = 'Manager ID must belong to a user in the manager role.';
+		if (isset($this->employee_id) && !UserTable()->isUserInRole($this->employee_id, 'employee'))
+			$errors['employee_id'] = 'Employee ID must belong to a user in the employee role.';
 		if (empty($this->start_time))
 			$errors['start_time'] = 'Start time must be specified.';
 		if (empty($this->end_time))
