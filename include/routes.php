@@ -20,5 +20,6 @@ $router_factory = new RouterFactory;
 $router = $router_factory->newInstance();
 
 $router->addGet(null, '/{controller}/{action}/{id}')->addTokens(array('controller' => 'employee', 'action' => 'shifts|coworkers|summary|managers', 'id' => '\d+'));
+$router->addPost(null, '/{controller}/{action}')->addTokens(array('controller' => 'shift', 'action' => 'create'));
 
 ?>
