@@ -19,7 +19,7 @@ class Shift extends BaseRow {
 		if (empty($this->start_time))
 			$errors['start_time'] = 'Start time must be specified.';
 		if (empty($this->end_time))
-			$errors['end'] = 'End time must be specified.';
+			$errors['end_time'] = 'End time must be specified.';
 		return $errors;
 	}
 
