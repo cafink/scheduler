@@ -9,6 +9,12 @@ class EmployeeController extends ApplicationController {
 		$this->page['layout'] = false;
 		$this->render();
 	}
+
+	function coworkers ($coords) {
+		$this->coworkers = UserTable()->getEmployee($coords['id'])->coworkers();
+		$this->page['layout'] = false;
+		$this->render();
+	}
 }
 
 ?>
