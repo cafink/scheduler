@@ -21,6 +21,12 @@ class EmployeeController extends ApplicationController {
 		$this->page['layout'] = false;
 		$this->render();
 	}
+
+	function managers ($coords) {
+		$this->shifts = UserTable()->getEmployee($coords['id'])->shifts;
+		$this->page['layout'] = false;
+		$this->render();
+	}
 }
 
 ?>
