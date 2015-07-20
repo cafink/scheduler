@@ -5,6 +5,15 @@ class Shift extends BaseRow {
 	public $table_name = 'shifts';
 	protected $default_order_by = 'start_time ASC';
 
+	function setup () {
+		$this->associations = array(
+			'manager' => new BelongsTo(array(
+				'class' => 'User',
+				'key'   => 'manager_id'
+			))
+		);
+	}
+
 	function validate () {
 		$errors = array();
 		if (empty($this->start_time))
