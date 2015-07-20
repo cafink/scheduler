@@ -19,8 +19,6 @@ use Aura\Router\RouterFactory;
 $router_factory = new RouterFactory;
 $router = $router_factory->newInstance();
 
-$router->add(null, '/{controller}/{action}/{id}')->addTokens(array('action' => 'edit|delete|view|feed', 'id' => '\d+'));
-$router->add(null, '/{controller}/{action}');
-$router->add(null, '/{controller}')->addValues(array('action' => 'index'));
+$router->addGet(null, '/{controller}/{action}/{id}')->addTokens(array('controller' => 'employee', 'action' => 'shifts|coworkers|summary|managers', 'id' => '\d+'));
 
 ?>
