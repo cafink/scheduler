@@ -29,6 +29,13 @@ class Shift extends BaseRow {
 		return $errors;
 	}
 
+	function callbackBeforeSave () {
+		// Unless defined, the manager_id should always
+		// default to the manager that created the shift.
+		if ($this->isNew() && empty($this->manager_id) && !empty($_REQUEST['requestor_id']))
+			$this->manager_id = $_REQUEST['requestor_id'];
+	}
+
 	function concurrentShifts () {
 
 		// Two time periods overlap if the first
