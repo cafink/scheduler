@@ -1,8 +1,19 @@
 <?php
 
+include_once 'models/Shift.php';
+
 class User extends BaseRow {
 
 	public $table_name = 'users';
+
+	function setup () {
+		$this->associations = array(
+			'shifts' => new HasMany(array(
+				'class' => 'Shift',
+				'key'   => 'employee_id'
+			))
+		);
+	}
 
 	function validate () {
 		$errors = array();
