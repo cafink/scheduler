@@ -22,7 +22,7 @@ $config['site_name'] = "My Site";
  * @var string DSN formatted for PEAR's DB
  * @see http://pear.php.net/manual/en/package.database.db.intro-dsn.php
  */
-#$config['dsn'] = "mysqli://username:password@localhost/database_name";
+$config['dsn'] = "mysqli://scheduler:password@localhost/scheduler";
 
 /**
  * Unix Zoneinfo file
