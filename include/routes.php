@@ -19,7 +19,7 @@ use Aura\Router\RouterFactory;
 $router_factory = new RouterFactory;
 $router = $router_factory->newInstance();
 
-$router->addGet(null, '/{controller}/{action}/{id}')->addTokens(array('controller' => 'employee', 'action' => 'shifts|coworkers|summary|managers', 'id' => '\d+'));
+$router->addGet(null, '/{controller}/{action}/{id}')->addTokens(array('controller' => 'employee', 'action' => 'shifts|coworkers|summary|managers|view', 'id' => '\d+'));
 $router->addPost(null, '/{controller}/{action}')->addTokens(array('controller' => 'shift', 'action' => 'create'));
 $router->addGet(null, '/{controller}/{action}')->addTokens(array('controller' => 'shift', 'action' => 'index'));
 $router->addPut(null, '/{controller}/{action}/{id}')->addTokens(array('controller' => 'shift', 'action' => 'update', 'id' => '\d+'));

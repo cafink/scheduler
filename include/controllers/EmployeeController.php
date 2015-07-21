@@ -31,6 +31,13 @@ class EmployeeController extends ApplicationController {
 			$this->renderWithoutLayout();
 		}
 	}
+
+	function view ($coords) {
+		if ($this->requestorRole('manager')) {
+			$this->employee = UserTable()->get($coords['id']);
+			$this->renderWithoutLayout();
+		}
+	}
 }
 
 ?>
