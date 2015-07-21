@@ -74,3 +74,7 @@ All requests return JSON data.  The specific information returned by each reques
 - **Method:** GET
 - **URL:** employee/view/`user_id`
 - **Response:** Details of employee with the specified user ID.
+
+## Testing
+
+The file `test.php` contains a quick-and-dirty script using cURL to make requests (to localhost) corresponding to all of the above user stories, and displaying the output.  It can be run directly in the browser.
