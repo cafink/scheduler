@@ -29,6 +29,15 @@ class ShiftController extends ApplicationController {
 			$this->renderWithoutLayout();
 		}
 	}
+
+	function update ($coords) {
+		if ($this->requestorRole('manager')) {
+			parse_str(file_get_contents("php://input"), $put);
+			ShiftTable()->update($put, $coords['id']);
+			$this->shift = ShiftTable()->get($coords['id']);
+			$this->renderWithoutLayout();
+		}
+	}
 }
 
 ?>
