@@ -22,6 +22,13 @@ class ShiftController extends ApplicationController {
 			}
 		}
 	}
+
+	function index ($coords) {
+		if ($this->requestorRole('manager')) {
+			$this->shifts = ShiftTable()->listShifts($_GET['start_time'], $_GET['end_time']);
+			$this->renderWithoutLayout();
+		}
+	}
 }
 
 ?>

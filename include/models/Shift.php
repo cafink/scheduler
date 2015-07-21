@@ -47,6 +47,13 @@ class Shift extends BaseRow {
 		));
 	}
 
+	function listShifts ($start_time, $end_time) {
+		return $this->find(array(
+			'where' => 'start_time < ? AND end_time > ?',
+			'params' => array($end_time, $start_time)
+		));
+	}
+
 	// Return shift length as a Unix timestamp,
 	// to more easily perform arithmetic on it.
 	function length () {
